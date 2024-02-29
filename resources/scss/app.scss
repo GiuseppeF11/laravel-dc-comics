@@ -1,15 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
-main {
-    background-color: lightcoral;
-}
-
-.gatto-img {
-    height: 200px;
-}
-
-.gatto-bg {
-    height: 200px;
-    background-image: url('../img/gatto.webp');
-    background-size: contain;
+//RESET 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

@@ -4,6 +4,6 @@
 
 @section('main-content')
 <h1>
-    About | Laravel Start 1
+    ABOUT
 </h1>
 @endsection

@@ -10,11 +10,6 @@
             'label' => 'Chi siamo',
             'active' => true,
         ],
-        [
-            'url' => '/contatti',
-            'label' => 'Contatti',
-            'active' => false,
-        ],
     ];
 @endphp
 
