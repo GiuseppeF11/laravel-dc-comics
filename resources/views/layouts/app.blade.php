@@ -14,7 +14,7 @@
 
         @yield('head-imports')
     </head>
-    <body>
+    <body class="bg-warning-subtle">
 
         {{-- @include('partials.header') --}}
 

@@ -10,9 +10,11 @@
         <div class="row">      
                 <div class="col">
                     <div class="card">
+                        @if ($comic->thumb)
                         <div class="cover">
                             <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
                         </div>
+                        @endif
                         <ul>
                             <li>
                                 <strong>Titolo: </strong> {{ $comic->title }}
@@ -28,6 +30,22 @@
                             </li>
                             <li>
                                 <strong>Data di uscita: </strong> {{ $comic->sale_date }}
+                            </li>
+                            <li>
+                                <strong>Disegnatori: </strong>
+                                <ul>
+                                    @foreach (json_decode($comic->artists, true) as $artist)
+                                        <li>{{ $artist }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Scrittori: </strong>
+                                <ul>
+                                    @foreach (json_decode($comic->writers, true) as $writer)
+                                        <li>{{ $writer }}</li>
+                                    @endforeach
+                                </ul>
                             </li>
                             <li>
                                 <strong>Tipo: </strong> {{ $comic->type }}

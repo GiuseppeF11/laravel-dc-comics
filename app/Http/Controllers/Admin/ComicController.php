@@ -20,7 +20,7 @@ class ComicController extends Controller
         return view('comics.index', compact('comics'));
     }
 
-    public function show(Comic $comic)
+    public function show(Comic $comic)  //scrittura con dependency injection
     {
         return view('comics.show', compact('comic'));
     }
@@ -39,17 +39,9 @@ class ComicController extends Controller
     public function store(Request $request)
     {
 
-        $comicData = $request->all();
+        $NewComicData = $request->all();
 
-        $comic = new Comic();
-        $comic->title = $comicData['title'];
-        $comic->description = $comicData['description'];
-        $comic->thumb = $comicData['thumb'];
-        $comic->price = $comicData['price'];
-        $comic->series = $comicData['series'];
-        $comic->sale_date = $comicData['sale_date'];
-        $comic->type = $comicData['type'];
-        $comic->save();
+        $comic = Comic::create($NewComicData);
 
         return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
@@ -61,24 +53,30 @@ class ComicController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $NewComicData = $request->all();
+
+        $comic->update($NewComicData);
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 }

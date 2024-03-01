@@ -23,10 +23,12 @@ class ComicSeeder extends Seeder
             $comic->description = $singleComic['description'];
             $comic->thumb = $singleComic['thumb'];
             $replacedTextPrice = str_replace('$','', $singleComic['price']);
-            $comic->price = intval($replacedTextPrice);
+            $comic->price = floatval($replacedTextPrice);
             $comic->series = $singleComic['series'];
             $comic->sale_date = $singleComic['sale_date'];
             $comic->type = $singleComic['type'];
+            $comic->artists = json_encode($singleComic['artists']);
+            $comic->writers = json_encode($singleComic['writers']);
             $comic->save();
         }
     }

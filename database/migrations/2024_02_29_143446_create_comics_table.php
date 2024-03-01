@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('title', 500);
             $table->string('description', 2000);
             $table->string('thumb', 2000)->nullable();
-            $table->unsignedSmallInteger('price');
+            $table->unsignedDecimal('price', 6, 2);
             $table->string('series', 200)->nullable();
             $table->date('sale_date')->nullable();
             $table->string('type',200)->nullable();
+            $table->text('artists')->nullable();
+            $table->text('writers')->nullable();
             $table->timestamps();
         });
     }
