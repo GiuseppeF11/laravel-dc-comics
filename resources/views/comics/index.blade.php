@@ -40,18 +40,21 @@
                                 </a>
                             </div>
                             <div class="col d-flex  justify-content-center ">
-                                <form
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questo fumetto?');" {{-- FONDAMENTALE per evitare eliminazioni definitive (esperienza utente) --}}
-                                class="d-inline-block"
-                                action="{{ route('comics.destroy', ['comic' => $comic->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    Elimina
-                                </button>
+                                <form 
+                                    id="delete-form" {{-- onsubmit="return confirm('Sei sicuro di voler eliminare questo elemento?');" --}} {{-- FONDAMENTALE per evitare eliminazioni definitive (esperienza utente) --}} class="d-inline-block"
+                                    action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">
+                                        Elimina
+                                    </button>
                                 </form>
                             </div>
+                            <script>
+                                function confirmDelete() {
+                                    return confirm('Sei sicuro di voler eliminare questo elemento?');
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>

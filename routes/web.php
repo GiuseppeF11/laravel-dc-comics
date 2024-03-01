@@ -25,3 +25,4 @@ Route::get('/chi-siamo', function () {
 
 /* CRUD Pasta */
 Route::resource('comics', ComicController::class);
+
