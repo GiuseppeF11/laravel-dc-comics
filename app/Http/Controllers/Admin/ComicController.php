@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+// Form Requests
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
+
 // Models
 use App\Models\Comic;
 
 class ComicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $comics = Comic::all();
@@ -25,54 +27,35 @@ class ComicController extends Controller
         return view('comics.show', compact('comic'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('comics.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
+        $validatedData = $request->validated();
 
-        $NewComicData = $request->all();
-
-        $comic = Comic::create($NewComicData);
+        $comic = Comic::create($validatedData);
 
         return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
-    /**
-     * Display the specified resource.
-     */
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Comic $comic)
     {
         return view('comics.edit', compact('comic'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $NewComicData = $request->all();
+        $validatedData = $request->validated();
 
-        $comic->update($NewComicData);
+        $comic->update($validatedData);
 
         return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Comic $comic)
     {
         $comic->delete();
